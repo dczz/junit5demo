@@ -46,7 +46,7 @@ public class CompanyTest {
   //业务规则：
   //名称不能大于10个汉字
   //不允许小于1个汉字
-  @ParameterizedTest
+  @ParameterizedTest(name = "如果参数是{0},那么这个测试会抛出异常")
   @NullAndEmptySource
   @ValueSource(strings = {"1", "我也是一个公司名称，但是我特别长"})
   @DisplayName("为公司起名，公司如果使用非法名称会抛出异常")
@@ -62,7 +62,7 @@ public class CompanyTest {
     );
   }
 
-  @ParameterizedTest
+  @ParameterizedTest(name = "如果员工是{0}，那么会通过测试")
   @MethodSource("testEmployeeParams")
   @DisplayName("公司应该有两个员工")
   void should_company_has_employee (List<String> employee) {
@@ -84,6 +84,5 @@ public class CompanyTest {
     Assertions.assertNotNull(company.getName());
     Assertions.assertTrue(company.getName().length() > 1);
   }
-
 
 }
